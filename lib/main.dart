@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter_web/material.dart';
 import 'package:flutter_web/foundation.dart';
 
@@ -40,6 +38,7 @@ class MyApp extends StatelessWidget {
             ButtonSection(),
             textSection,
             // interactivity boxes
+            TapboxA(),
           ]
         ),
       ),
@@ -88,7 +87,7 @@ class TitleSection extends StatelessWidget {
           // FavoriteWidget()
         ],
       ),
-    );;
+    );
   }
 }
 
@@ -126,3 +125,38 @@ class ButtonSection extends StatelessWidget {
     );
   }
 } 
+
+// Interacitivy Widgets
+class TapboxA extends StatefulWidget {
+  TapboxA({Key key}) : super(key: key);
+  @override _TapboxAState createState() => _TapboxAState();
+}
+
+class _TapboxAState extends State<TapboxA> {
+bool _active = false;
+void _handTap() {
+  setState(() {
+    _active = !_active;
+  });
+}
+
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: _handTap,
+      child: Container(
+        child: Center(
+          child: Text(
+            _active ? 'Active' : 'Inctive',
+            style: TextStyle(fontSize: 32.0, color: Colors.pinkAccent)
+          )
+        ),
+        height: 200.0,
+        width: 200.0,
+        margin: const EdgeInsets.all(64.0),
+        decoration: BoxDecoration(
+          color: _active ? Colors.lightBlue : Colors.grey,
+        ),
+      ),
+    );
+  }
+}
